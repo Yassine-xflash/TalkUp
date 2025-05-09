@@ -18,7 +18,7 @@ const slides = [
     id: '1',
     title: 'TALKUP',
     description: 'Connect with your ENSA Fès community',
-    image: 'https://cdn.dribbble.com/userupload/13732347/file/original-c1c07d2c4c4c8c0c0e8e5a4f6c8c6c6c.png?resize=1024x768',
+    image: 'https://media-hosting.imagekit.io/4d704431418f4fc8/d10077a3-a197-4a19-88fe-e88fa9437e8e.png?Expires=1841438609&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=uCvsd~BKqM7fh753wfXSgmItoEPHsdB3Ke~0dc8Itey16ryB40UO1yzUUOd~Jbowt4pN6u8aKvt1HjhtFVfN-Nb4E~MBnQjreVjLAUyJmL9gGFsCvoX3PLFMBfgcJ5SAm71lNhsz-O8owO0fDoisBhgNIApy8mRrV5LxtdIK-Ed9a2R3ytVgE3itCdZMVlW67XP4E6Ij4pNbV8iR8jtHJPpqQ88UE3T9Qj8FRUaO62ZDS3rUd6ZQcPzRrbijcaI6SQDomWJwJgCfl8a1HO4BMBfClmYPfmGxAIG8aQqiCScAry6nNa7eDms~9jiQbhr2t-hfCGphrQlR7tA42dGmLg__',
   },
   {
     id: '2',
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   },
   logoTitle: {
     fontSize: 32,
-    color: '#0066FF',
+    color: colors.primary,
   },
   description: {
     fontSize: 16,
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   paginationDotActive: {
-    backgroundColor: '#0066FF',
+    backgroundColor: colors.primary,
     width: 24,
   },
   buttonContainer: {
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   joinButton: {
-    backgroundColor: '#FF6B3D',
+    backgroundColor: colors.secondary,
     paddingVertical: 16,
     borderRadius: 12,
     alignItems: 'center',
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   signInButtonText: {
-    color: '#0066FF',
+    color: colors.primary,
     fontSize: 16,
   },
   firstSlideButtons: {
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   nextButton: {
-    backgroundColor: '#FF6B3D',
+    backgroundColor: colors.secondary,
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 24,
