@@ -1,7 +1,7 @@
 # 🗣️ TalkUp
 
 <div align="center">
-  <img src="(https://github.com/Yassine-xflash/TalkUp/blob/master/d10077a3-a197-4a19-88fe-e88fa9437e8e.png)" alt="TalkUp Logo" width="120"/>
+  <img src="https://github.com/Yassine-xflash/TalkUp/blob/master/d10077a3-a197-4a19-88fe-e88fa9437e8e.png" alt="TalkUp Logo" width="450"/>
   
   [![Expo](https://img.shields.io/badge/Expo-52.0.0-blue.svg)](https://expo.dev/)
   [![React Native](https://img.shields.io/badge/React%20Native-0.72.6-blue.svg)](https://reactnative.dev/)
