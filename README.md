@@ -46,34 +46,34 @@ TalkUp is a modern social networking platform built with React Native and Expo, 
 ### Installation
 
 1. Clone the repository:
-\`\`\`bash
+```bash
 git clone https://github.com/your-username/talkup.git
 cd talkup
-\`\`\`
+```
 
 2. Install dependencies:
-\`\`\`bash
+```bash
 bun install
-\`\`\`
+```
 
 3. Start the development server:
-\`\`\`bash
+```bash
 bun start
-\`\`\`
+```
 
 ## 📱 Usage
 
 ### Development
 
-- **iOS**: Press 'i' in the terminal or run \`bun ios\`
-- **Android**: Press 'a' in the terminal or run \`bun android\`
-- **Web**: Press 'w' in the terminal or run \`bun web\`
+- **iOS**: Press 'i' in the terminal or run `bun ios`
+- **Android**: Press 'a' in the terminal or run `bun android`
+- **Web**: Press 'w' in the terminal or run `bun web`
 
 ### Building
 
-- **iOS**: \`eas build --platform ios\`
-- **Android**: \`eas build --platform android\`
-- **Web**: \`bun build:web\`
+- **iOS**: `eas build --platform ios`
+- **Android**: `eas build --platform android`
+- **Web**: `bun build:web`
 
 ## 🏗️ Architecture
 
@@ -95,20 +95,22 @@ bun start
 
 ### Project Structure
 
-\`\`\`
+```
 talkup/
-├── app/                  # Expo Router pages
-│   ├── (tabs)/          # Tab-based navigation
-│   ├── auth/            # Authentication screens
-│   └── modal/           # Modal screens
-├── components/          # Reusable components
-├── constants/           # App constants
-├── store/              # State management
-├── hooks/              # Custom React hooks
-├── utils/              # Helper functions
-├── types/              # TypeScript definitions
-└── assets/             # Static assets
-\`\`\`
+│
+├── app/                   # Expo Router pages
+│   ├── (tabs)/           # Tab-based navigation
+│   ├── auth/             # Authentication screens
+│   └── modal/            # Modal screens
+│
+├── components/           # Reusable components
+├── constants/            # App constants
+├── store/                # State management
+├── hooks/                # Custom React hooks
+├── utils/                # Helper functions
+├── types/                # TypeScript definitions
+└── assets/               # Static assets
+```
 
 ## 🤝 Contributing
 
