@@ -1,0 +1,61 @@
+import { Group } from '@/types';
+
+const groups: Group[] = [
+  {
+    id: '1',
+    name: 'Computer Science Department',
+    description: 'Official group for Computer Science students and faculty at ENSA Fès.',
+    avatar: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    members: ['1', '3'],
+    admins: ['3'],
+    type: 'department',
+    createdAt: Date.now() - 86400000 * 365,
+  },
+  {
+    id: '2',
+    name: 'Electrical Engineering Department',
+    description: 'Official group for Electrical Engineering students and faculty at ENSA Fès.',
+    avatar: 'https://images.unsplash.com/photo-1620283085439-39620a1e21c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1620283085439-39620a1e21c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    members: ['2'],
+    admins: [],
+    type: 'department',
+    createdAt: Date.now() - 86400000 * 365,
+  },
+  {
+    id: '3',
+    name: 'Robotics Club',
+    description: 'Group for robotics enthusiasts to share projects, events, and knowledge.',
+    avatar: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    members: ['1', '2', '3', '4'],
+    admins: ['4'],
+    type: 'club',
+    createdAt: Date.now() - 86400000 * 180,
+  },
+  {
+    id: '4',
+    name: 'Smart City Project',
+    description: 'Collaborative group for the interdisciplinary Smart City project.',
+    avatar: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80',
+    members: ['1', '2', '3', '5'],
+    admins: ['3'],
+    type: 'project',
+    createdAt: Date.now() - 86400000 * 90,
+  },
+  {
+    id: '5',
+    name: 'Alumni Network',
+    description: 'Connecting ENSA Fès graduates for networking and mentorship.',
+    avatar: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    coverImage: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    members: ['5'],
+    admins: ['5'],
+    type: 'club',
+    createdAt: Date.now() - 86400000 * 120,
+  },
+];
+
+export default groups;

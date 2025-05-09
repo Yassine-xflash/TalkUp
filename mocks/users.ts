@@ -1,0 +1,62 @@
+import { User } from '@/types';
+
+const users: User[] = [
+  {
+    id: '1',
+    name: 'Ahmed Benali',
+    email: 'ahmed.benali@ensa.usmba.ac.ma',
+    role: 'student',
+    avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+    department: 'Computer Science',
+    year: 3,
+    bio: "Computer Science student passionate about AI and mobile development.",
+    isVerified: true,
+    createdAt: Date.now() - 86400000 * 30,
+  },
+  {
+    id: '2',
+    name: 'Fatima Zahra',
+    email: 'fatima.zahra@ensa.usmba.ac.ma',
+    role: 'student',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+    department: 'Electrical Engineering',
+    year: 2,
+    bio: "Electrical Engineering student with interest in renewable energy.",
+    isVerified: true,
+    createdAt: Date.now() - 86400000 * 60,
+  },
+  {
+    id: '3',
+    name: 'Prof. Mohammed Alaoui',
+    email: 'mohammed.alaoui@ensa.usmba.ac.ma',
+    role: 'professor',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    department: 'Computer Science',
+    bio: "Professor of Computer Science specializing in Machine Learning and Data Science.",
+    isVerified: true,
+    createdAt: Date.now() - 86400000 * 365,
+  },
+  {
+    id: '4',
+    name: 'Robotics Club',
+    email: 'robotics.club@ensa.usmba.ac.ma',
+    role: 'club',
+    avatar: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+    bio: "Official club for robotics enthusiasts at ENSA Fès.",
+    isVerified: true,
+    createdAt: Date.now() - 86400000 * 180,
+  },
+  {
+    id: '5',
+    name: 'Karim Tazi',
+    email: 'karim.tazi@ensa.usmba.ac.ma',
+    role: 'graduate',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+    department: 'Civil Engineering',
+    bio: "ENSA Fès graduate working as a Civil Engineer at OCP Group.",
+    isVerified: true,
+    createdAt: Date.now() - 86400000 * 730,
+  },
+];
+
+export default users;
