@@ -21,7 +21,7 @@ const schools = ['ENSA Fès'];
 
 export default function RegisterScreen() {
   const router = useRouter();
-  const { register, isLoading, error, clearError } = useAuthStore();
+  const { register, isLoading, error: serverError, clearError } = useAuthStore();
   
   const [userType, setUserType] = useState('Student');
   const [name, setName] = useState('');
@@ -29,6 +29,7 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState('');
   const [school, setSchool] = useState('ENSA Fès');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [error, setError] = useState('');
   
   const [showUserTypeDropdown, setShowUserTypeDropdown] = useState(false);
   const [showSchoolDropdown, setShowSchoolDropdown] = useState(false);
@@ -44,7 +45,13 @@ export default function RegisterScreen() {
   
   const validateEmail = (text: string) => {
     setEmail(text);
-    setEmailValid(text.endsWith('@usmba.ac.ma'));
+    const isValid = text.endsWith('@usmba.ac.ma');
+    setEmailValid(isValid);
+    if (!isValid && text.length > 0) {
+      setError('Please use your academic email (@usmba.ac.ma)');
+    } else {
+      setError('');
+    }
   };
   
   const validatePassword = (text: string) => {
@@ -54,13 +61,16 @@ export default function RegisterScreen() {
   
   const handleRegister = async () => {
     if (!nameValid || !emailValid || !passwordValid || !acceptedTerms) {
+      if (!emailValid) {
+        setError('Please use your academic email (@usmba.ac.ma)');
+      }
       return;
     }
     
     clearError();
     await register(email, password, name, userType.toLowerCase());
     
-    if (!error) {
+    if (!serverError) {
       router.replace('/(tabs)');
     }
   };
@@ -206,8 +216,8 @@ export default function RegisterScreen() {
             </Text>
           </View>
           
-          {error && (
-            <Text style={styles.errorText}>{error}</Text>
+          {(error || serverError) && (
+            <Text style={styles.errorText}>{error || serverError}</Text>
           )}
           
           <TouchableOpacity
