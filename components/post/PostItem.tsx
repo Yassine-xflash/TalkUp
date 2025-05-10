@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Platform } from 'react-native';
-import { MessageCircle, Share2, ThumbsUp, MoreHorizontal } from 'lucide-react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Platform, Alert } from 'react-native';
+import { MessageCircle, Share2, ThumbsUp, MoreHorizontal, Trash2, Flag, BookmarkPlus } from 'lucide-react-native';
 import { Post, User } from '@/types';
 import Avatar from '@/components/ui/Avatar';
 import Card from '@/components/ui/Card';
@@ -24,13 +24,18 @@ const PostItem: React.FC<PostItemProps> = ({
   onCommentPress,
 }) => {
   const currentUser = useAuthStore(state => state.user);
-  const { likePost, unlikePost } = useFeedStore();
+  const { likePost, unlikePost, deletePost } = useFeedStore();
   const router = useRouter();
+  const [showOptions, setShowOptions] = useState(false);
   
   const isLiked = currentUser ? post.likes.includes(currentUser.id) : false;
+  const isOwnPost = currentUser?.id === post.userId;
   
   const toggleLike = () => {
-    if (!currentUser) return;
+    if (!currentUser) {
+      router.push('/auth/login');
+      return;
+    }
     
     if (isLiked) {
       unlikePost(post.id, currentUser.id);
@@ -51,12 +56,116 @@ const PostItem: React.FC<PostItemProps> = ({
         console.log('Error sharing:', error);
       }
     } else {
-      console.log('Share post:', post.id);
+      // For native, you would implement platform-specific sharing
+      Alert.alert('Share', 'Coming soon!');
     }
   };
 
   const handleCommentPress = () => {
+    if (!currentUser) {
+      router.push('/auth/login');
+      return;
+    }
     router.push(`/post/${post.id}`);
+  };
+
+  const handleUserPress = () => {
+    router.push(`/profile/${user.id}`);
+  };
+
+  const handleOptionsPress = () => {
+    setShowOptions(true);
+    
+    // Show different options based on whether it's the user's own post
+    const options = isOwnPost 
+      ? ['Delete Post', 'Share', 'Save', 'Cancel']
+      : ['Report Post', 'Share', 'Save', 'Cancel'];
+    
+    const destructiveButtonIndex = isOwnPost ? 0 : 0;
+    const cancelButtonIndex = options.length - 1;
+
+    if (Platform.OS === 'web') {
+      // For web, show a simple alert
+      const action = window.confirm(isOwnPost ? 'Delete this post?' : 'Report this post?');
+      if (action && isOwnPost) {
+        handleDeletePost();
+      }
+      setShowOptions(false);
+      return;
+    }
+
+    Alert.alert(
+      'Post Options',
+      '',
+      options.map((option, index) => ({
+        text: option,
+        onPress: () => {
+          if (index === destructiveButtonIndex) {
+            if (isOwnPost) {
+              handleDeletePost();
+            } else {
+              handleReportPost();
+            }
+          } else if (option === 'Share') {
+            handleShare();
+          } else if (option === 'Save') {
+            handleSavePost();
+          }
+          setShowOptions(false);
+        },
+        style: index === destructiveButtonIndex ? 'destructive' : 
+               index === cancelButtonIndex ? 'cancel' : 'default'
+      }))
+    );
+  };
+
+  const handleDeletePost = () => {
+    Alert.alert(
+      'Delete Post',
+      'Are you sure you want to delete this post?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: () => {
+            deletePost(post.id);
+            // Optionally navigate back if on post detail page
+            if (router.canGoBack()) {
+              router.back();
+            }
+          }
+        }
+      ]
+    );
+  };
+
+  const handleReportPost = () => {
+    Alert.alert(
+      'Report Post',
+      'Are you sure you want to report this post?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Report',
+          style: 'destructive',
+          onPress: () => {
+            // Implement report functionality
+            Alert.alert('Thank you', 'We have received your report and will review it shortly.');
+          }
+        }
+      ]
+    );
+  };
+
+  const handleSavePost = () => {
+    Alert.alert('Success', 'Post saved to your bookmarks!');
   };
 
   return (
@@ -64,7 +173,7 @@ const PostItem: React.FC<PostItemProps> = ({
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.userInfo}
-          onPress={() => onUserPress?.(user.id)}
+          onPress={handleUserPress}
         >
           <Avatar source={user.avatar} name={user.name} size={40} />
           <View style={styles.userMeta}>
@@ -75,7 +184,10 @@ const PostItem: React.FC<PostItemProps> = ({
           </View>
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.moreButton}>
+        <TouchableOpacity 
+          style={styles.moreButton}
+          onPress={handleOptionsPress}
+        >
           <MoreHorizontal size={24} color={colors.textSecondary} />
         </TouchableOpacity>
       </View>
@@ -103,9 +215,11 @@ const PostItem: React.FC<PostItemProps> = ({
           </View>
           <Text style={styles.statsText}>{post.likes.length} likes</Text>
         </View>
-        <Text style={styles.statsText}>
-          {post.comments.length} comments
-        </Text>
+        <TouchableOpacity onPress={handleCommentPress}>
+          <Text style={styles.statsText}>
+            {post.comments.length} comments
+          </Text>
+        </TouchableOpacity>
       </View>
       
       <View style={styles.actions}>

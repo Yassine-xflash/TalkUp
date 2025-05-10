@@ -13,6 +13,7 @@ interface FeedState {
   fetchNews: () => Promise<void>;
   filterPostsByType: (type: string) => void;
   addPost: (content: string, media?: string[], mediaType?: 'image' | 'video' | 'pdf', groupId?: string) => Promise<void>;
+  deletePost: (postId: string) => Promise<void>;
   likePost: (postId: string, userId: string) => Promise<void>;
   unlikePost: (postId: string, userId: string) => Promise<void>;
   addComment: (postId: string, userId: string, content: string) => Promise<void>;
@@ -156,6 +157,19 @@ export const useFeedStore = create<FeedState>((set, get) => ({
       set({ 
         error: error instanceof Error ? error.message : "Failed to create post", 
         isLoading: false 
+      });
+    }
+  },
+
+  deletePost: async (postId: string) => {
+    try {
+      set(state => ({
+        posts: state.posts.filter(post => post.id !== postId),
+        filteredPosts: state.filteredPosts.filter(post => post.id !== postId)
+      }));
+    } catch (error) {
+      set({ 
+        error: error instanceof Error ? error.message : "Failed to delete post" 
       });
     }
   },
