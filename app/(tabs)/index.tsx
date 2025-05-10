@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, ScrollView, RefreshControl, Text, TouchableOpacity } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import { useFeedStore } from '@/store/feed-store';
 import { useEventsStore } from '@/store/events-store';
 import { useAuthStore } from '@/store/auth-store';
 import PostItem from '@/components/post/PostItem';
 import CreatePostInput from '@/components/post/CreatePostInput';
 import EventItem from '@/components/event/EventItem';
+import { CustomHeader } from '@/components/layout/CustomHeader';
 import colors from '@/constants/colors';
 
 export default function HomeScreen() {
-  const router = useRouter();
   const { posts, isLoading: postsLoading, fetchPosts, getUserById } = useFeedStore();
   const { events, isLoading: eventsLoading, fetchEvents } = useEventsStore();
   const { user } = useAuthStore();
@@ -29,22 +29,13 @@ export default function HomeScreen() {
     }
   };
 
-  const navigateToProfile = (userId: string) => {
-    router.push(`/profile/${userId}`);
-  };
-
-  const navigateToEventDetails = (eventId: string) => {
-    router.push(`/event/${eventId}`);
-  };
-
-  const handleCreatePost = (content: string, media?: string[]) => {
-    // Handle post creation
-    console.log('Creating post:', { content, media });
-  };
-
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ headerShown: false }} />
+      <Stack.Screen 
+        options={{
+          header: () => <CustomHeader />,
+        }} 
+      />
       
       <View style={styles.tabs}>
         <TouchableOpacity 
@@ -81,7 +72,9 @@ export default function HomeScreen() {
             {user && (
               <CreatePostInput 
                 user={user}
-                onSubmit={handleCreatePost}
+                onSubmit={(content, media) => {
+                  console.log('Creating post:', { content, media });
+                }}
               />
             )}
             
@@ -94,8 +87,6 @@ export default function HomeScreen() {
                   key={post.id}
                   post={post}
                   user={postUser}
-                  onUserPress={() => navigateToProfile(post.userId)}
-                  onCommentPress={() => router.push(`/post/${post.id}/comments`)}
                 />
               );
             })}
@@ -108,7 +99,6 @@ export default function HomeScreen() {
               <EventItem 
                 key={event.id}
                 event={event}
-                onPress={() => navigateToEventDetails(event.id)}
               />
             ))}
           </View>

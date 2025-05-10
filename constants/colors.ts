@@ -1,14 +1,14 @@
 // Color palette for the TalkUp app
 const colors = {
-  // Brand colors
-  primary: '#3b82f6', // Blue
-  primaryLight: '#93c5fd',
-  primaryDark: '#1d4ed8',
+  // Brand colors (matching the TalkUp logo)
+  primary: '#00A3FF', // Logo blue
+  primaryLight: '#40B7FF',
+  primaryDark: '#0082CC',
   
-  // Secondary colors
-  secondary: '#10b981', // Emerald
-  secondaryLight: '#34d399',
-  secondaryDark: '#059669',
+  // Secondary colors (from logo orange)
+  secondary: '#FF6B3D', // Logo orange
+  secondaryLight: '#FF8B66',
+  secondaryDark: '#CC4E20',
   
   // UI colors
   background: '#f8fafc',
@@ -28,17 +28,17 @@ const colors = {
   info: '#3b82f6',
   
   // Social colors
-  like: '#3b82f6',
-  comment: '#10b981',
+  like: '#00A3FF',
+  comment: '#FF6B3D',
   share: '#8b5cf6',
   
   // Gradients
-  primaryGradient: ['#3b82f6', '#10b981'],
+  primaryGradient: ['#00A3FF', '#FF6B3D'],
   storyGradients: {
-    blue: ['#60a5fa', '#2563eb'],
+    blue: ['#00A3FF', '#0082CC'],
+    orange: ['#FF6B3D', '#CC4E20'],
     purple: ['#a78bfa', '#7c3aed'],
-    green: ['#34d399', '#059669'],
-    yellow: ['#fbbf24', '#d97706']
+    green: ['#34d399', '#059669']
   },
   
   // Dark mode
@@ -47,6 +47,6 @@ const colors = {
   darkBorder: '#4a5568',
   darkText: '#f7fafc',
   darkTextSecondary: '#cbd5e1',
-};
+}
 
 export default colors;

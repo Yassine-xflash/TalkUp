@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Image } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { Info, Globe, Heart } from 'lucide-react-native';
 import colors from '@/constants/colors';
@@ -40,11 +40,13 @@ export default function AboutScreen() {
       />
       
       <View style={styles.header}>
-        <View style={[styles.iconContainer, { backgroundColor: `${colors.primary}20` }]}>
-          <Info size={24} color={colors.primary} />
-        </View>
-        <Text style={styles.title}>About TalkUp</Text>
-        <Text style={styles.subtitle}>Connecting the ENSA Fès community</Text>
+        <Image 
+          source={{ 
+            uri: 'https://media-hosting.imagekit.io/bdce9eed61dd4e06/d10077a3-a197-4a19-88fe-e88fa9437e8e-removebg-preview.png?Expires=1841440791&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=L8BwPMyy3B4M9CXXCG6dx6U3-o3ankbUem6BhM82ceaO3zpxNXzvWrr0Q-aATG7fvc65n3~P-i2YZ~7nfIEGt05sSL9iJfbOE9f0fYZOHnNkwTVGjVtnvuPcZRSl4sBvscVSyAYvC6FVV17~6olljaPu4sl63DqKKW~sCSXbQvZQc~kdp0Nh0oCkypUj-p57I~M5Q2B2aT8epO54qGuBJrqFubUQTIqqCFCTltdWly-FOwuYcPkryEuxiTd9k2zbx0qfU2hppY~FhYsBMLDkOx8omljqMP1TGeqwRLbQSreNc5EWICyvFk9NWtnvm9qzhO6ijVpGb8W0nzsce4qD8w__'
+          }}
+          style={styles.logo}
+          resizeMode="contain"
+        />
         <Text style={styles.version}>Version {appInfo.version} (Build {appInfo.build})</Text>
       </View>
       
@@ -97,7 +99,6 @@ export default function AboutScreen() {
         <TouchableOpacity 
           style={styles.linkItem}
           onPress={() => {
-            // In a real app, this would open terms
             router.push('/settings/about/terms');
           }}
         >
@@ -110,7 +111,6 @@ export default function AboutScreen() {
         <TouchableOpacity 
           style={styles.linkItem}
           onPress={() => {
-            // In a real app, this would open privacy policy
             router.push('/settings/about/privacy');
           }}
         >
@@ -134,24 +134,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
+  logo: {
+    width: 120,
+    height: 120,
     marginBottom: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: colors.text,
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 14,
-    color: colors.textSecondary,
-    marginBottom: 8,
   },
   version: {
     fontSize: 12,

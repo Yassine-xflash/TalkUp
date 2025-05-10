@@ -28,8 +28,8 @@ export default function LoginScreen() {
       return false;
     }
     
-    if (!email.endsWith('@ensa.usmba.ac.ma')) {
-      setEmailError('Please use your academic email (@ensa.usmba.ac.ma)');
+    if (!email.endsWith('@usmba.ac.ma')) {
+      setEmailError('Please use your academic email (@usmba.ac.ma)');
       return false;
     }
     

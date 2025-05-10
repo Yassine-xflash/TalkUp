@@ -12,7 +12,7 @@ export const CustomHeader = () => {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const menuItems = [
-    { id: 'home', title: 'Home', icon: Home, path: '/(tabs)/index' },
+    { id: 'home', title: 'Home', icon: Home, path: '/(tabs)' },
     { id: 'groups', title: 'Groups', icon: Users, path: '/(tabs)/groups' },
     { id: 'games', title: 'Games', icon: Calendar, path: '/(tabs)/games' },
     { id: 'messages', title: 'Messages', icon: MessageCircle, path: '/(tabs)/messages' },
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: '600',
-    color: colors.text,
+    color: colors.primary,
   },
   rightContainer: {
     flexDirection: 'row',
