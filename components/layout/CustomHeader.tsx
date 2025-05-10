@@ -1,3 +1,14 @@
+/**
+ * CustomHeader component for the TalkUp application.
+ * This component provides the main navigation header with:
+ * - Menu button for navigation drawer
+ * - App title
+ * - Search and notification buttons
+ * - User menu with navigation options
+ * 
+ * @module CustomHeader
+ */
+
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Modal, TouchableWithoutFeedback, FlatList, Platform } from 'react-native';
 import { Menu, Bell, Search, Home, Users, Calendar, MessageCircle, User, Settings, LogOut } from 'lucide-react-native';
@@ -6,11 +17,20 @@ import colors from '@/constants/colors';
 import { useAuthStore } from '@/store/auth-store';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+/**
+ * CustomHeader component
+ * @component
+ * @returns {JSX.Element} The header component
+ */
 export const CustomHeader = () => {
   const router = useRouter();
   const { user, logout } = useAuthStore();
   const [menuVisible, setMenuVisible] = useState(false);
 
+  /**
+   * Menu items configuration
+   * @constant
+   */
   const menuItems = [
     { id: 'home', title: 'Home', icon: Home, path: '/(tabs)' },
     { id: 'groups', title: 'Groups', icon: Users, path: '/(tabs)/groups' },
@@ -24,6 +44,11 @@ export const CustomHeader = () => {
     } }] : []),
   ];
 
+  /**
+   * Renders a menu item
+   * @param {Object} param0 - The menu item props
+   * @returns {JSX.Element} The menu item component
+   */
   const renderMenuItem = ({ item }: { item: any }) => (
     <TouchableOpacity
       style={styles.menuItem}
@@ -45,6 +70,9 @@ export const CustomHeader = () => {
     </TouchableOpacity>
   );
 
+  /**
+   * Handles search button press
+   */
   const handleSearchPress = () => {
     router.push('/search');
   };
@@ -102,6 +130,9 @@ export const CustomHeader = () => {
   );
 };
 
+/**
+ * Styles for the CustomHeader component
+ */
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: colors.card,
