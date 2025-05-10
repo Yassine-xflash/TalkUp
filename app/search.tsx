@@ -21,7 +21,7 @@ export default function SearchScreen() {
     fetchPosts();
     fetchUsers();
     fetchGroups();
-  }, []);
+  }, [fetchPosts, fetchUsers, fetchGroups]);
   
   const dismissKeyboard = () => {
     Keyboard.dismiss();

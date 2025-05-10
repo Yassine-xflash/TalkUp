@@ -45,6 +45,10 @@ export const CustomHeader = () => {
     </TouchableOpacity>
   );
 
+  const handleSearchPress = () => {
+    router.push('/search');
+  };
+
   return (
     <SafeAreaView edges={['top']} style={styles.safeArea}>
       <View style={styles.header}>
@@ -58,7 +62,7 @@ export const CustomHeader = () => {
 
         <View style={styles.rightContainer}>
           <TouchableOpacity 
-            onPress={() => router.push('/search')} 
+            onPress={handleSearchPress} 
             style={styles.iconButton}
           >
             <Search size={24} color={colors.text} />
