@@ -18,25 +18,25 @@ const slides = [
     id: '1',
     title: 'TALKUP',
     description: 'Connect with your ENSA Fès community',
-    image: 'https://media-hosting.imagekit.io/4d704431418f4fc8/d10077a3-a197-4a19-88fe-e88fa9437e8e.png?Expires=1841438609&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=uCvsd~BKqM7fh753wfXSgmItoEPHsdB3Ke~0dc8Itey16ryB40UO1yzUUOd~Jbowt4pN6u8aKvt1HjhtFVfN-Nb4E~MBnQjreVjLAUyJmL9gGFsCvoX3PLFMBfgcJ5SAm71lNhsz-O8owO0fDoisBhgNIApy8mRrV5LxtdIK-Ed9a2R3ytVgE3itCdZMVlW67XP4E6Ij4pNbV8iR8jtHJPpqQ88UE3T9Qj8FRUaO62ZDS3rUd6ZQcPzRrbijcaI6SQDomWJwJgCfl8a1HO4BMBfClmYPfmGxAIG8aQqiCScAry6nNa7eDms~9jiQbhr2t-hfCGphrQlR7tA42dGmLg__',
+    image: 'https://media-hosting.imagekit.io/bdce9eed61dd4e06/d10077a3-a197-4a19-88fe-e88fa9437e8e-removebg-preview.png?Expires=1841440791&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=L8BwPMyy3B4M9CXXCG6dx6U3-o3ankbUem6BhM82ceaO3zpxNXzvWrr0Q-aATG7fvc65n3~P-i2YZ~7nfIEGt05sSL9iJfbOE9f0fYZOHnNkwTVGjVtnvuPcZRSl4sBvscVSyAYvC6FVV17~6olljaPu4sl63DqKKW~sCSXbQvZQc~kdp0Nh0oCkypUj-p57I~M5Q2B2aT8epO54qGuBJrqFubUQTIqqCFCTltdWly-FOwuYcPkryEuxiTd9k2zbx0qfU2hppY~FhYsBMLDkOx8omljqMP1TGeqwRLbQSreNc5EWICyvFk9NWtnvm9qzhO6ijVpGb8W0nzsce4qD8w__',
   },
   {
     id: '2',
     title: 'Find Friends & Get Inspiration',
     description: 'Connect with fellow students, professors and alumni to expand your academic network.',
-    image: 'https://cdn.dribbble.com/userupload/13732348/file/original-8c0c0e8e5a4f6c8c6c6c.png?resize=1024x768',
+    image: 'https://media-hosting.imagekit.io/e17cc11a476e4bc5/image-removebg-preview%20(2).png?Expires=1841440791&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Vd~Kwx~~0YHf~IeJNU-3luLK~gxnBUKm~a6mNQs5o1aF8FnWV6Nc6qXbU2pmHk-Hqu0BDWWUfahhZmwTP7cfhziJLC42oPAX5OuNCtyNkznb0-hdE2k4OpLYCPPvQHMdQX-X6j8yRNF-y1L56EGE65L2WbfIEEX-woAv~krJzL54JdU~h2~p8M-xY1IQRwcrZ~22K94er3RTssn0u9n7CNIWcLhI4cRyygGvxodmpBGOmT0h4lhm~Ga2YDBHa8T6NT27lLeHSiUQ7TyQS2K49UJkUhP5K~Av5hf7g4OD1aQViGuvVIstKfo6PS7pXvLLWXXYHvlCWbhLEzb4ZppbPA__',
   },
   {
     id: '3',
     title: 'Meet Awesome People & Enjoy yourself',
     description: 'Join groups, attend events, and participate in discussions about topics that matter to you.',
-    image: 'https://cdn.dribbble.com/userupload/13732349/file/original-4f6c8c6c6c.png?resize=1024x768',
+    image: 'https://media-hosting.imagekit.io/7be937240cdc4156/image-removebg-preview%20(1).png?Expires=1841440791&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=z8Bkgef91oXC6ok2ustYTIsu-lxFKH7Gy4w3PrlHzXIxzdUPQyLoyGG-iDqbVVHun-p8ePGLJUqnkIDPppRlmfrsB-UGbmDsPLJpUKbxZtmKeCYavdvpmmqao0wDTfjDFRc7~UdTumA~-ELHD4WKfpIKVs1ti~JekHlz4f3oTkqwofwTnVCUhgFEnBYM-EDo~A19uGdveEAW35m80bEDU-~KcHo~aOsKAgHAhegNMM7jCK6Q9xdCiqEwR0XUbHlxvYw3be5dRYLtI5Jpcahc5XKxhP2wiRZCDZSXofy1vB6alwXcEHboRUpdzyADXkQHntS2OmRAml6Xn2aEper0bA__',
   },
   {
     id: '4',
     title: 'Hangout with Friends',
     description: 'Chat with your friends, share resources, and stay connected with your academic community.',
-    image: 'https://cdn.dribbble.com/userupload/13732350/file/original-6c8c6c6c.png?resize=1024x768',
+    image: 'https://media-hosting.imagekit.io/e35d208c42544733/image-removebg-preview.png?Expires=1841440791&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=rHmOyDfBbxQYNiKfNCCD0zlpXtMgOHjF1m4zma6zgI833Clgna9JFchduFyG3Khwig4G9-m7agmeMmpB9huE3lQmp10fRhazvGwUHgAcqKJMtLadDtjupxBlEVEZkxQfA~RKQPAnG2zQBdw6oX3EYzEEn9PnlNqHSpxxeTKusj7iogMhoqSiW0j1rBvwZoYoKwZyOtbryxwUZ18WpD11fMzoG9Yr4wZzcc~qaVqPliLgYCaNeQh8hKGVRF3Mzc09hYJIgSsWikigvaHBYeN4T72rxj82sgWqB9hWrMKwJaeB-42q8fzz8pU0yobp5pzOkR2Ysgns3HSvFb0QTrSUnQ__',
   },
 ];
 
@@ -205,8 +205,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   logoSlide: {
-    width: '80%',
-    height: '80%',
+    width: '160%', // Doubled from 80%
+    height: '160%', // Doubled from 80%
   },
   textContainer: {
     alignItems: 'center',

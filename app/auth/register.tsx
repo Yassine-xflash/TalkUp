@@ -44,7 +44,7 @@ export default function RegisterScreen() {
   
   const validateEmail = (text: string) => {
     setEmail(text);
-    setEmailValid(text.endsWith('@ensa.usmba.ac.ma'));
+    setEmailValid(text.endsWith('@usmba.ac.ma'));
   };
   
   const validatePassword = (text: string) => {
@@ -89,31 +89,33 @@ export default function RegisterScreen() {
         </View>
         
         <View style={styles.form}>
-          <Text style={styles.label}>User Type</Text>
-          <Pressable 
-            style={styles.dropdown}
-            onPress={() => setShowUserTypeDropdown(!showUserTypeDropdown)}
-          >
-            <Text style={styles.dropdownText}>{userType}</Text>
-            <ChevronDown size={20} color={colors.textSecondary} />
-          </Pressable>
-          
-          {showUserTypeDropdown && (
-            <View style={styles.dropdownMenu}>
-              {userTypes.map((type) => (
-                <Pressable
-                  key={type}
-                  style={styles.dropdownItem}
-                  onPress={() => {
-                    setUserType(type);
-                    setShowUserTypeDropdown(false);
-                  }}
-                >
-                  <Text style={styles.dropdownItemText}>{type}</Text>
-                </Pressable>
-              ))}
-            </View>
-          )}
+          <View style={styles.dropdownContainer}>
+            <Text style={styles.label}>User Type</Text>
+            <Pressable 
+              style={styles.dropdown}
+              onPress={() => setShowUserTypeDropdown(!showUserTypeDropdown)}
+            >
+              <Text style={styles.dropdownText}>{userType}</Text>
+              <ChevronDown size={20} color={colors.textSecondary} />
+            </Pressable>
+            
+            {showUserTypeDropdown && (
+              <View style={styles.dropdownMenu}>
+                {userTypes.map((type) => (
+                  <Pressable
+                    key={type}
+                    style={styles.dropdownItem}
+                    onPress={() => {
+                      setUserType(type);
+                      setShowUserTypeDropdown(false);
+                    }}
+                  >
+                    <Text style={styles.dropdownItemText}>{type}</Text>
+                  </Pressable>
+                ))}
+              </View>
+            )}
+          </View>
           
           <View style={styles.inputRow}>
             <Input
@@ -133,7 +135,7 @@ export default function RegisterScreen() {
           <View style={styles.inputRow}>
             <Input
               label="Academic Email address"
-              placeholder="your.name@ensa.usmba.ac.ma"
+              placeholder="your.name@usmba.ac.ma"
               keyboardType="email-address"
               autoCapitalize="none"
               value={email}
@@ -163,31 +165,33 @@ export default function RegisterScreen() {
             )}
           </View>
           
-          <Text style={styles.label}>School</Text>
-          <Pressable 
-            style={styles.dropdown}
-            onPress={() => setShowSchoolDropdown(!showSchoolDropdown)}
-          >
-            <Text style={styles.dropdownText}>{school}</Text>
-            <ChevronDown size={20} color={colors.textSecondary} />
-          </Pressable>
-          
-          {showSchoolDropdown && (
-            <View style={styles.dropdownMenu}>
-              {schools.map((s) => (
-                <Pressable
-                  key={s}
-                  style={styles.dropdownItem}
-                  onPress={() => {
-                    setSchool(s);
-                    setShowSchoolDropdown(false);
-                  }}
-                >
-                  <Text style={styles.dropdownItemText}>{s}</Text>
-                </Pressable>
-              ))}
-            </View>
-          )}
+          <View style={styles.dropdownContainer}>
+            <Text style={styles.label}>School</Text>
+            <Pressable 
+              style={styles.dropdown}
+              onPress={() => setShowSchoolDropdown(!showSchoolDropdown)}
+            >
+              <Text style={styles.dropdownText}>{school}</Text>
+              <ChevronDown size={20} color={colors.textSecondary} />
+            </Pressable>
+            
+            {showSchoolDropdown && (
+              <View style={styles.dropdownMenu}>
+                {schools.map((s) => (
+                  <Pressable
+                    key={s}
+                    style={styles.dropdownItem}
+                    onPress={() => {
+                      setSchool(s);
+                      setShowSchoolDropdown(false);
+                    }}
+                  >
+                    <Text style={styles.dropdownItemText}>{s}</Text>
+                  </Pressable>
+                ))}
+              </View>
+            )}
+          </View>
           
           <View style={styles.termsContainer}>
             <Pressable
@@ -267,6 +271,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     color: colors.text,
   },
+  dropdownContainer: {
+    position: 'relative',
+    zIndex: 1,
+    marginBottom: 16,
+  },
   dropdown: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -274,7 +283,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F4F6',
     borderRadius: 8,
     padding: 12,
-    marginBottom: 16,
   },
   dropdownText: {
     fontSize: 16,
@@ -289,7 +297,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 4,
     padding: 4,
-    zIndex: 1000,
+    zIndex: 2,
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
