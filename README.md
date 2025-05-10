@@ -81,7 +81,7 @@ bun start
 
 - **Frontend**
   - React Native
-  - Expo SDK 52
+  - Expo SDK 53
   - TypeScript
   - Zustand (State Management)
   - React Query
