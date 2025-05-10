@@ -17,7 +17,6 @@ import PostItem from '@/components/post/PostItem';
 import GroupItem from '@/components/group/GroupItem';
 import Avatar from '@/components/ui/Avatar';
 import colors from '@/constants/colors';
-import Card from '@/components/ui/Card';
 import { Search, Users, FileText } from 'lucide-react-native';
 
 interface SearchResultsProps {
@@ -76,9 +75,41 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, visible }) => {
     );
   }
 
-  // Rest of the component remains the same...
-  // (Previous implementation of search results)
+  const filteredUsers = query ? 
+    users.filter(user => 
+      user.name.toLowerCase().includes(query.toLowerCase()) || 
+      (user.email && user.email.toLowerCase().includes(query.toLowerCase()))
+    ) : [];
+    
+  const filteredGroups = query ?
+    groups.filter(group => 
+      group.name.toLowerCase().includes(query.toLowerCase()) || 
+      group.description.toLowerCase().includes(query.toLowerCase())
+    ) : [];
+    
+  const filteredPosts = query ?
+    posts.filter(post => 
+      post.content.toLowerCase().includes(query.toLowerCase())
+    ) : [];
 
+  const isLoading = isLoadingUsers || isLoadingGroups || isLoadingPosts;
+  
+  if (isLoading) {
+    return (
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        style={styles.keyboardAvoid}
+      >
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color={colors.primary} />
+          <Text style={styles.loadingText}>Searching...</Text>
+        </View>
+      </KeyboardAvoidingView>
+    );
+  }
+
+  const totalResults = filteredUsers.length + filteredGroups.length + filteredPosts.length;
+  
   return (
     <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -89,7 +120,97 @@ const SearchResults: React.FC<SearchResultsProps> = ({ query, visible }) => {
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={styles.contentContainer}
       >
-        {/* Previous implementation of search results */}
+        {totalResults === 0 ? (
+          <View style={styles.emptyContainer}>
+            <Search size={48} color={colors.textSecondary} style={styles.emptyIcon} />
+            <Text style={styles.emptyTitle}>No results found</Text>
+            <Text style={styles.emptyMessage}>
+              We couldn't find anything matching "{query}". Try different keywords.
+            </Text>
+          </View>
+        ) : (
+          <>
+            {filteredUsers.length > 0 && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>People ({filteredUsers.length})</Text>
+                {filteredUsers.slice(0, 3).map(user => (
+                  <Pressable 
+                    key={user.id} 
+                    style={styles.userItem}
+                    onPress={() => router.push(`/profile/${user.id}`)}
+                  >
+                    <Avatar 
+                      source={user.avatar} 
+                      size={48} 
+                      style={styles.userAvatar}
+                      name={user.name}
+                    />
+                    <View style={styles.userInfo}>
+                      <Text style={styles.userName}>{user.name}</Text>
+                      <Text style={styles.userEmail}>{user.email || 'No email'}</Text>
+                    </View>
+                  </Pressable>
+                ))}
+                {filteredUsers.length > 3 && (
+                  <Pressable 
+                    style={styles.seeMore}
+                    onPress={() => router.push('/find-friends')}
+                  >
+                    <Text style={styles.seeMoreText}>See all people results</Text>
+                  </Pressable>
+                )}
+              </View>
+            )}
+            
+            {filteredGroups.length > 0 && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Groups ({filteredGroups.length})</Text>
+                {filteredGroups.slice(0, 3).map(group => (
+                  <GroupItem 
+                    key={group.id} 
+                    group={group} 
+                    onPress={() => router.push(`/group/${group.id}`)} 
+                  />
+                ))}
+                {filteredGroups.length > 3 && (
+                  <Pressable 
+                    style={styles.seeMore}
+                    onPress={() => router.push('/(tabs)/groups')}
+                  >
+                    <Text style={styles.seeMoreText}>See all group results</Text>
+                  </Pressable>
+                )}
+              </View>
+            )}
+            
+            {filteredPosts.length > 0 && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Posts ({filteredPosts.length})</Text>
+                {filteredPosts.slice(0, 3).map(post => {
+                  // Find the user who created the post
+                  const postUser = users.find(user => user.id === post.userId);
+                  if (!postUser) return null;
+                  
+                  return (
+                    <PostItem 
+                      key={post.id} 
+                      post={post}
+                      user={postUser}
+                    />
+                  );
+                })}
+                {filteredPosts.length > 3 && (
+                  <Pressable 
+                    style={styles.seeMore}
+                    onPress={() => router.push('/(tabs)')}
+                  >
+                    <Text style={styles.seeMoreText}>See all post results</Text>
+                  </Pressable>
+                )}
+              </View>
+            )}
+          </>
+        )}
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -105,7 +226,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 16,
-    paddingBottom: Platform.OS === 'ios' ? 120 : 100, // Extra padding for iOS keyboard
+    paddingBottom: Platform.OS === 'ios' ? 120 : 100,
   },
   suggestionsContainer: {
     padding: 24,
@@ -145,7 +266,84 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontWeight: '500',
   },
-  // ... rest of the styles remain the same
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.background,
+  },
+  loadingText: {
+    marginTop: 8,
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 32,
+    backgroundColor: colors.background,
+  },
+  emptyIcon: {
+    marginBottom: 16,
+  },
+  emptyTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 8,
+  },
+  emptyMessage: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    paddingHorizontal: 16,
+  },
+  section: {
+    marginBottom: 24,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 12,
+  },
+  userItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.card,
+    padding: 12,
+    borderRadius: 12,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  userAvatar: {
+    marginRight: 12,
+  },
+  userInfo: {
+    flex: 1,
+  },
+  userName: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: colors.text,
+    marginBottom: 2,
+  },
+  userEmail: {
+    fontSize: 14,
+    color: colors.textSecondary,
+  },
+  seeMore: {
+    padding: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  seeMoreText: {
+    fontSize: 14,
+    color: colors.primary,
+    fontWeight: '500',
+  },
 });
 
 export default SearchResults;
