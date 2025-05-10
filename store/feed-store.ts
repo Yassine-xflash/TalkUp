@@ -1,25 +1,23 @@
+/**
+ * Feed store for the TalkUp application.
+ * This store manages the social feed state including:
+ * - Posts
+ * - News
+ * - Post interactions (likes, comments)
+ * - Feed filtering
+ * 
+ * @module FeedStore
+ */
+
 import { create } from 'zustand';
 import { Post, News } from '@/types';
 import posts from '@/mocks/posts';
 import users from '@/mocks/users';
 
-interface FeedState {
-  posts: Post[];
-  news: News[];
-  filteredPosts: Post[];
-  isLoading: boolean;
-  error: string | null;
-  fetchPosts: () => Promise<void>;
-  fetchNews: () => Promise<void>;
-  filterPostsByType: (type: string) => void;
-  addPost: (content: string, media?: string[], mediaType?: 'image' | 'video' | 'pdf', groupId?: string) => Promise<void>;
-  deletePost: (postId: string) => Promise<void>;
-  likePost: (postId: string, userId: string) => Promise<void>;
-  unlikePost: (postId: string, userId: string) => Promise<void>;
-  addComment: (postId: string, userId: string, content: string) => Promise<void>;
-  getUserById: (userId: string) => any;
-}
-
+/**
+ * Mock news data for development
+ * @constant
+ */
 const mockNews: News[] = [
   {
     id: '1',
@@ -54,6 +52,31 @@ const mockNews: News[] = [
   },
 ];
 
+/**
+ * Feed state interface
+ * @interface
+ */
+interface FeedState {
+  posts: Post[];
+  news: News[];
+  filteredPosts: Post[];
+  isLoading: boolean;
+  error: string | null;
+  fetchPosts: () => Promise<void>;
+  fetchNews: () => Promise<void>;
+  filterPostsByType: (type: string) => void;
+  addPost: (content: string, media?: string[], mediaType?: 'image' | 'video' | 'pdf', groupId?: string) => Promise<void>;
+  deletePost: (postId: string) => Promise<void>;
+  likePost: (postId: string, userId: string) => Promise<void>;
+  unlikePost: (postId: string, userId: string) => Promise<void>;
+  addComment: (postId: string, userId: string, content: string) => Promise<void>;
+  getUserById: (userId: string) => any;
+}
+
+/**
+ * Feed store implementation
+ * Uses Zustand for state management
+ */
 export const useFeedStore = create<FeedState>((set, get) => ({
   posts: [],
   filteredPosts: [],
@@ -61,6 +84,9 @@ export const useFeedStore = create<FeedState>((set, get) => ({
   isLoading: false,
   error: null,
   
+  /**
+   * Fetches posts from the backend
+   */
   fetchPosts: async () => {
     set({ isLoading: true, error: null });
     
@@ -68,7 +94,6 @@ export const useFeedStore = create<FeedState>((set, get) => ({
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 500));
       
-      // Sort posts by creation date (newest first)
       const sortedPosts = [...posts].sort((a, b) => b.createdAt - a.createdAt);
       
       set({ 
@@ -84,6 +109,10 @@ export const useFeedStore = create<FeedState>((set, get) => ({
     }
   },
 
+  /**
+   * Filters posts by type
+   * @param {string} type - The type to filter by
+   */
   filterPostsByType: (type: string) => {
     const allPosts = get().posts;
     let filtered: Post[];
@@ -93,15 +122,12 @@ export const useFeedStore = create<FeedState>((set, get) => ({
         filtered = allPosts.filter(post => post.groupId);
         break;
       case 'friends':
-        // In a real app, we would filter based on friend relationships
         filtered = allPosts.filter(post => !post.groupId);
         break;
       case 'favorites':
-        // In a real app, we would filter based on saved/favorited posts
         filtered = allPosts.filter(post => post.likes.length > 0);
         break;
       case 'trending':
-        // Sort by engagement (likes + comments)
         filtered = [...allPosts].sort((a, b) => 
           (b.likes.length + b.comments.length) - (a.likes.length + a.comments.length)
         );
@@ -113,6 +139,9 @@ export const useFeedStore = create<FeedState>((set, get) => ({
     set({ filteredPosts: filtered });
   },
 
+  /**
+   * Fetches news from the backend
+   */
   fetchNews: async () => {
     set({ isLoading: true, error: null });
     
@@ -129,6 +158,13 @@ export const useFeedStore = create<FeedState>((set, get) => ({
     }
   },
   
+  /**
+   * Adds a new post
+   * @param {string} content - Post content
+   * @param {string[]} media - Media URLs
+   * @param {string} mediaType - Type of media
+   * @param {string} groupId - Group ID if posted in a group
+   */
   addPost: async (content, media, mediaType, groupId) => {
     set({ isLoading: true, error: null });
     
@@ -138,7 +174,7 @@ export const useFeedStore = create<FeedState>((set, get) => ({
       
       const newPost: Post = {
         id: (Math.max(...get().posts.map(p => parseInt(p.id))) + 1).toString(),
-        userId: '1', // Current user ID (would come from auth store in a real app)
+        userId: '1',
         content,
         media,
         mediaType,
@@ -161,6 +197,10 @@ export const useFeedStore = create<FeedState>((set, get) => ({
     }
   },
 
+  /**
+   * Deletes a post
+   * @param {string} postId - ID of the post to delete
+   */
   deletePost: async (postId: string) => {
     try {
       set(state => ({
@@ -174,6 +214,11 @@ export const useFeedStore = create<FeedState>((set, get) => ({
     }
   },
   
+  /**
+   * Likes a post
+   * @param {string} postId - ID of the post to like
+   * @param {string} userId - ID of the user liking the post
+   */
   likePost: async (postId, userId) => {
     try {
       set(state => ({
@@ -195,6 +240,11 @@ export const useFeedStore = create<FeedState>((set, get) => ({
     }
   },
   
+  /**
+   * Unlikes a post
+   * @param {string} postId - ID of the post to unlike
+   * @param {string} userId - ID of the user unliking the post
+   */
   unlikePost: async (postId, userId) => {
     try {
       set(state => ({
@@ -216,6 +266,12 @@ export const useFeedStore = create<FeedState>((set, get) => ({
     }
   },
   
+  /**
+   * Adds a comment to a post
+   * @param {string} postId - ID of the post to comment on
+   * @param {string} userId - ID of the user commenting
+   * @param {string} content - Comment content
+   */
   addComment: async (postId, userId, content) => {
     try {
       const newComment = {
@@ -244,6 +300,11 @@ export const useFeedStore = create<FeedState>((set, get) => ({
     }
   },
   
+  /**
+   * Gets a user by their ID
+   * @param {string} userId - ID of the user to get
+   * @returns {User|undefined} The user object if found
+   */
   getUserById: (userId) => {
     return users.find(user => user.id === userId);
   },

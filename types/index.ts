@@ -1,3 +1,14 @@
+/**
+ * Type definitions for the TalkUp application.
+ * This file contains all the core interfaces used throughout the app.
+ * 
+ * @module Types
+ */
+
+/**
+ * User interface representing a TalkUp user
+ * @interface
+ */
 export interface User {
   id: string;
   name: string;
@@ -13,6 +24,10 @@ export interface User {
   gameStats?: GameStats;
 }
 
+/**
+ * Game statistics interface
+ * @interface
+ */
 export interface GameStats {
   totalGames: number;
   wins: number;
@@ -24,6 +39,10 @@ export interface GameStats {
   recentGames: GameHistory[];
 }
 
+/**
+ * Achievement interface for gaming achievements
+ * @interface
+ */
 export interface Achievement {
   id: string;
   name: string;
@@ -32,6 +51,10 @@ export interface Achievement {
   unlockedAt: number;
 }
 
+/**
+ * Game history interface for tracking game results
+ * @interface
+ */
 export interface GameHistory {
   id: string;
   gameId: string;
@@ -42,6 +65,10 @@ export interface GameHistory {
   date: number;
 }
 
+/**
+ * Post interface for social media posts
+ * @interface
+ */
 export interface Post {
   id: string;
   userId: string;
@@ -54,6 +81,10 @@ export interface Post {
   groupId?: string;
 }
 
+/**
+ * Comment interface for post comments
+ * @interface
+ */
 export interface Comment {
   id: string;
   userId: string;
@@ -62,6 +93,10 @@ export interface Comment {
   likes?: string[];
 }
 
+/**
+ * Group interface for user groups
+ * @interface
+ */
 export interface Group {
   id: string;
   name: string;
@@ -75,6 +110,10 @@ export interface Group {
   category?: string;
 }
 
+/**
+ * Event interface for group and user events
+ * @interface
+ */
 export interface Event {
   id: string;
   title: string;
@@ -93,6 +132,10 @@ export interface Event {
   createdAt: number;
 }
 
+/**
+ * Message interface for chat messages
+ * @interface
+ */
 export interface Message {
   id: string;
   conversationId: string;
@@ -104,6 +147,10 @@ export interface Message {
   createdAt: number;
 }
 
+/**
+ * Conversation interface for chat conversations
+ * @interface
+ */
 export interface Conversation {
   id: string;
   participants: string[];
@@ -114,6 +161,10 @@ export interface Conversation {
   createdAt: number;
 }
 
+/**
+ * Notification interface for user notifications
+ * @interface
+ */
 export interface Notification {
   id: string;
   userId: string;
@@ -125,6 +176,10 @@ export interface Notification {
   createdAt: number;
 }
 
+/**
+ * News interface for news feed items
+ * @interface
+ */
 export interface News {
   id: string;
   title: string;

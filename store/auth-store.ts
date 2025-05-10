@@ -1,9 +1,24 @@
+/**
+ * Authentication store for the TalkUp application.
+ * This store manages user authentication state including:
+ * - User login
+ * - User registration
+ * - Session management
+ * - Error handling
+ * 
+ * @module AuthStore
+ */
+
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { User } from '@/types';
 import users from '@/mocks/users';
 
+/**
+ * Authentication state interface
+ * @interface
+ */
 interface AuthState {
   user: User | null;
   isLoading: boolean;
@@ -14,6 +29,10 @@ interface AuthState {
   clearError: () => void;
 }
 
+/**
+ * Authentication store implementation
+ * Uses Zustand for state management with persistence
+ */
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
@@ -21,6 +40,11 @@ export const useAuthStore = create<AuthState>()(
       isLoading: false,
       error: null,
       
+      /**
+       * Handles user login
+       * @param {string} email - User's email
+       * @param {string} password - User's password
+       */
       login: async (email: string, password: string) => {
         set({ isLoading: true, error: null });
         
@@ -28,20 +52,17 @@ export const useAuthStore = create<AuthState>()(
           // Simulate API call
           await new Promise(resolve => setTimeout(resolve, 1000));
           
-          // Check if email is valid academic email
+          // Validate academic email
           if (!email.endsWith('@usmba.ac.ma')) {
             throw new Error("Please use your academic email (@usmba.ac.ma)");
           }
           
-          // Find user with matching email (mock authentication)
+          // Find user
           const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
           
           if (!user) {
             throw new Error("Invalid email or password");
           }
-          
-          // In a real app, we would verify the password here
-          // For demo purposes, any password works
           
           set({ user, isLoading: false });
         } catch (error) {
@@ -52,6 +73,13 @@ export const useAuthStore = create<AuthState>()(
         }
       },
       
+      /**
+       * Handles user registration
+       * @param {string} email - User's email
+       * @param {string} password - User's password
+       * @param {string} name - User's name
+       * @param {string} role - User's role
+       */
       register: async (email: string, password: string, name: string, role: string) => {
         set({ isLoading: true, error: null });
         
@@ -59,28 +87,26 @@ export const useAuthStore = create<AuthState>()(
           // Simulate API call
           await new Promise(resolve => setTimeout(resolve, 1000));
           
-          // Check if email is valid academic email
+          // Validate academic email
           if (!email.endsWith('@usmba.ac.ma')) {
             throw new Error("Please use your academic email (@usmba.ac.ma)");
           }
           
-          // Check if user already exists
+          // Check for existing user
           const existingUser = users.find(u => u.email.toLowerCase() === email.toLowerCase());
           if (existingUser) {
             throw new Error("Email already registered");
           }
           
-          // Create new user (in a real app, this would be saved to a database)
+          // Create new user
           const newUser: User = {
             id: (users.length + 1).toString(),
             name,
             email,
             role: role as any,
-            isVerified: false, // Would require email verification in a real app
+            isVerified: false,
             createdAt: Date.now(),
           };
-          
-          // In a real app, we would save the user to the database here
           
           set({ user: newUser, isLoading: false });
         } catch (error) {
@@ -91,10 +117,16 @@ export const useAuthStore = create<AuthState>()(
         }
       },
       
+      /**
+       * Handles user logout
+       */
       logout: () => {
         set({ user: null });
       },
       
+      /**
+       * Clears authentication errors
+       */
       clearError: () => {
         set({ error: null });
       },
