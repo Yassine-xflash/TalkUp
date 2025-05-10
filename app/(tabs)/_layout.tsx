@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { Home, Users, Calendar, MessageSquare, User, Gamepad2 } from 'lucide-react-native';
 import colors from '@/constants/colors';
 import { useAuthStore } from '@/store/auth-store';
+import { CustomHeader } from '@/components/layout/CustomHeader';
 
 export default function TabLayout() {
   const { user } = useAuthStore();
@@ -33,6 +34,7 @@ export default function TabLayout() {
           backgroundColor: colors.card,
         },
         headerTintColor: colors.text,
+        header: () => <CustomHeader />,
       }}
     >
       <Tabs.Screen

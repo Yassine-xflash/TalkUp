@@ -28,6 +28,11 @@ export const useAuthStore = create<AuthState>()(
           // Simulate API call
           await new Promise(resolve => setTimeout(resolve, 1000));
           
+          // Check if email is valid academic email
+          if (!email.endsWith('@usmba.ac.ma')) {
+            throw new Error("Please use your academic email (@usmba.ac.ma)");
+          }
+          
           // Find user with matching email (mock authentication)
           const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
           
@@ -55,8 +60,8 @@ export const useAuthStore = create<AuthState>()(
           await new Promise(resolve => setTimeout(resolve, 1000));
           
           // Check if email is valid academic email
-          if (!email.endsWith('@ensa.usmba.ac.ma')) {
-            throw new Error("Please use your academic email (@ensa.usmba.ac.ma)");
+          if (!email.endsWith('@usmba.ac.ma')) {
+            throw new Error("Please use your academic email (@usmba.ac.ma)");
           }
           
           // Check if user already exists

@@ -1,7 +1,7 @@
 # 🗣️ TalkUp
 
 <div align="center">
-  <img src="https://github.com/Yassine-xflash/TalkUp/blob/master/d10077a3-a197-4a19-88fe-e88fa9437e8e.png" alt="TalkUp Logo" width="450"/>
+  <img src="https://media-hosting.imagekit.io/bdce9eed61dd4e06/d10077a3-a197-4a19-88fe-e88fa9437e8e-removebg-preview.png?Expires=1841440791&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=L8BwPMyy3B4M9CXXCG6dx6U3-o3ankbUem6BhM82ceaO3zpxNXzvWrr0Q-aATG7fvc65n3~P-i2YZ~7nfIEGt05sSL9iJfbOE9f0fYZOHnNkwTVGjVtnvuPcZRSl4sBvscVSyAYvC6FVV17~6olljaPu4sl63DqKKW~sCSXbQvZQc~kdp0Nh0oCkypUj-p57I~M5Q2B2aT8epO54qGuBJrqFubUQTIqqCFCTltdWly-FOwuYcPkryEuxiTd9k2zbx0qfU2hppY~FhYsBMLDkOx8omljqMP1TGeqwRLbQSreNc5EWICyvFk9NWtnvm9qzhO6ijVpGb8W0nzsce4qD8w__" alt="TalkUp Logo" width="200"/>
   
   [![Expo](https://img.shields.io/badge/Expo-52.0.0-blue.svg)](https://expo.dev/)
   [![React Native](https://img.shields.io/badge/React%20Native-0.72.6-blue.svg)](https://reactnative.dev/)
@@ -11,7 +11,7 @@
 
 ## 🌟 Overview
 
-TalkUp is a modern social networking platform built with React Native and Expo, designed to connect people through meaningful conversations and shared experiences. With a focus on clean design and seamless user experience, TalkUp brings people together in an engaging and intuitive way.
+TalkUp is a modern social networking platform built with React Native and Expo, designed to connect ENSA Fès students through meaningful conversations and shared experiences. With a focus on clean design and seamless user experience, TalkUp brings students together in an engaging and intuitive way.
 
 ## ✨ Features
 
@@ -97,19 +97,17 @@ bun start
 
 ```
 talkup/
-│
-├── app/                   # Expo Router pages
-│   ├── (tabs)/           # Tab-based navigation
-│   ├── auth/             # Authentication screens
-│   └── modal/            # Modal screens
-│
-├── components/           # Reusable components
-├── constants/            # App constants
-├── store/                # State management
-├── hooks/                # Custom React hooks
-├── utils/                # Helper functions
-├── types/                # TypeScript definitions
-└── assets/               # Static assets
+├── app/                  # Expo Router pages
+│   ├── (tabs)/          # Tab-based navigation
+│   ├── auth/            # Authentication screens
+│   └── modal/           # Modal screens
+├── components/          # Reusable components
+├── constants/           # App constants
+├── store/              # State management
+├── hooks/              # Custom React hooks
+├── utils/              # Helper functions
+├── types/              # TypeScript definitions
+└── assets/             # Static assets
 ```
 
 ## 🤝 Contributing
